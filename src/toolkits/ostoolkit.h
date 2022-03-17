@@ -30,6 +30,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     #endif
     #include "xlibtoolkit.h"
     #define COSToolkit CXlibToolkit
+#elif defined(__HAIKU__)
+    #include <haikutoolkit.h>
+    #define COSToolkit CHaikuToolkit
 #else
     #include <windows.h>
     #include "windowstoolkit.h"

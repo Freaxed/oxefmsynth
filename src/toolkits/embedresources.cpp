@@ -33,6 +33,7 @@ void append_file(FILE *fout, const char *path, const char *name)
     }
     fprintf(fout, "};\n");
     fprintf(fout, "const char *%s = (const char *)_%s;\n", name, name);
+    fprintf(fout, "const unsigned int %s_dim = %d;\n", name, i);
     fclose(f);
 }
 
