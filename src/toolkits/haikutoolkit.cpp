@@ -20,14 +20,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <Window.h>
 #include <DataIO.h>
 #include <TranslationUtils.h>
-#include "bitmaps.cpp"
+#include "bitmaps.h"
 #include <WindowScreen.h>
 
 BBitmap*    
-GetBitmap(const char* array, unsigned int len)
+GetBitmap(const char* array)
 {
-     BMemoryIO reader((void*)array, len);
+    unsigned int fileSize = *((unsigned int*)(array + 2)); //Bitmap header..
     
+    BMemoryIO reader((void*)array, fileSize);
+
     BBitmap* bmap = BTranslationUtils::GetBitmap(&reader);
     if (bmap == NULL)
             printf("Error: no bitmap!!");
@@ -45,14 +47,14 @@ CHaikuToolkit::CHaikuToolkit(void *parentWindow, CEditor *editor) :
 
     BView*  parent = (BView*)parentWindow;
 
-   fBitmap[BMP_CHARS]     =  GetBitmap(chars_bmp, chars_bmp_dim);
-   fBitmap[BMP_KNOB]      =  GetBitmap(knob_bmp, knob_bmp_dim); 
-   fBitmap[BMP_KNOB2]     =  GetBitmap(knob2_bmp, knob2_bmp_dim);
-   fBitmap[BMP_KNOB3]     =  GetBitmap(knob3_bmp, knob3_bmp_dim);
-   fBitmap[BMP_KEY]       =  GetBitmap(key_bmp, key_bmp_dim);  
-   fBitmap[BMP_BG]        =  GetBitmap(bg_bmp, bg_bmp_dim);
-   fBitmap[BMP_BUTTONS]   =  GetBitmap(buttons_bmp, buttons_bmp_dim);
-   fBitmap[BMP_OPS]       =  GetBitmap(ops_bmp, ops_bmp_dim);
+   fBitmap[BMP_CHARS]     =  GetBitmap(chars_bmp);
+   fBitmap[BMP_KNOB]      =  GetBitmap(knob_bmp); 
+   fBitmap[BMP_KNOB2]     =  GetBitmap(knob2_bmp);
+   fBitmap[BMP_KNOB3]     =  GetBitmap(knob3_bmp);
+   fBitmap[BMP_KEY]       =  GetBitmap(key_bmp);  
+   fBitmap[BMP_BG]        =  GetBitmap(bg_bmp);
+   fBitmap[BMP_BUTTONS]   =  GetBitmap(buttons_bmp);
+   fBitmap[BMP_OPS]       =  GetBitmap(ops_bmp);
 
     parent->ResizeTo(GUI_WIDTH, GUI_HEIGHT);
     parent->AddChild(this);

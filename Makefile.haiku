@@ -26,7 +26,7 @@ INCLUDES+=-I$(VSTSDK_PATH)
 INCLUDES+=-I.
 INCLUDES+=-Ipublic.sdk/source/h
 
-#SOURCES:=bitmaps.cpp
+SOURCES:=bitmaps.cpp
 SOURCES+=src/vst/oxevst.cpp
 SOURCES+=haikumain.cpp
 SOURCES+=src/vst/oxevstmain.cpp
